@@ -28,7 +28,9 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Trivy Installation
-      run : sudo rpm -ivh https://github.com/aquasecurity/trivy/releases/download/v0.18.3/trivy_0.18.3_Linux-64bit.rpm
+      run : |
+            sudo dnf install -y rpm
+            sudo rpm -ivh https://github.com/aquasecurity/trivy/releases/download/v0.41.0/trivy_0.41.0_Linux-64bit.rpm
 
     - name: Trivy FS scan 
       run: trivy fs --format table -o fs-report.json .
