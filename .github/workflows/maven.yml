@@ -125,6 +125,15 @@ jobs:
         push: true
         tags: krunalp19/bankapp:latest
         file: ./Dockerfile
+
+  Deploy_to_kind_cluster:
+    runs-on: self-hosted
+    needs: buils_docker_image_and_push
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+    - name: deploy to kind cluster
+      run: kubectl apply -f ds.yml
       
   
       
