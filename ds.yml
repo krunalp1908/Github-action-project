@@ -70,11 +70,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: bankapp-service
+  name: my-app-service
 spec:
-  type: LoadBalancer
-  ports:
-  - port: 80
-    targetPort: 8080
+  type: NodePort
   selector:
-    app: bankapp
+    app: my-app
+  ports:
+    - protocol: TCP
+      port: 80          # The port your app is accessed on internally
+      targetPort: 8080  # The container/app port
+      nodePort: 30001   # External access via KIND node port
+
